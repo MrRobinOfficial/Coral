@@ -35,6 +35,10 @@ namespace Coral {
 		/// @return The size in bytes
 		int32_t GetSize() const;
 
+		/// @brief Determines whether the current type is abstract
+		/// @return True if the current type is abstract
+		bool IsAbstract() const;
+
 		/// @brief Determines whether the current type derives from the specified type
 		/// @param InOther The type to check
 		/// @return True if the current type derives from the specified type

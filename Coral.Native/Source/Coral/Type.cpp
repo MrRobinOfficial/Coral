@@ -57,6 +57,11 @@ namespace Coral {
 	{
 		return s_ManagedFunctions.GetTypeSizeFptr(m_Id);
 	}
+	
+	bool Type::IsAbstract() const
+	{
+		return s_ManagedFunctions.IsTypeAbstractFptr(m_Id);
+	}
 
 	bool Type::IsSubclassOf(const Type& InOther) const
 	{

@@ -276,6 +276,23 @@ internal static class TypeInterface
 	}
 
 	[UnmanagedCallersOnly]
+	internal static bool IsTypeAbstract(int InType)
+	{
+		try
+		{
+			if (!s_CachedTypes.TryGetValue(InType, out var type) || type == null)
+				return false;
+
+			return type.IsAbstract;
+		}
+		catch (Exception e)
+		{
+			HandleException(e);
+			return -1;
+		}
+	}
+
+	[UnmanagedCallersOnly]
 	internal static unsafe Bool32 IsTypeSubclassOf(int InType0, int InType1)
 	{
 		try

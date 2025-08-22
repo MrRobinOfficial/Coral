@@ -34,6 +34,7 @@ namespace Coral {
 	using GetInterfaceTypeCountFn = void (*)(TypeId, int32_t*);
 	using GetInterfaceTypesFn = void (*)(TypeId, TypeId*);
 	using GetTypeSizeFn = int32_t (*)(TypeId);
+	using IsTypeAbstractFn = Bool32 (*)(TypeId);
 	using IsTypeSubclassOfFn = Bool32 (*)(TypeId, TypeId);
 	using IsTypeAssignableToFn = Bool32 (*)(TypeId, TypeId);
 	using IsTypeAssignableFromFn = Bool32 (*)(TypeId, TypeId);
@@ -112,6 +113,7 @@ namespace Coral {
 		GetInterfaceTypeCountFn GetInterfaceTypeCountFptr = nullptr;
 		GetInterfaceTypesFn GetInterfaceTypesFptr = nullptr;
 		GetTypeSizeFn GetTypeSizeFptr = nullptr;
+		IsTypeAbstractFn IsTypeAbstractFptr = nullptr;
 		IsTypeSubclassOfFn IsTypeSubclassOfFptr = nullptr;
 		IsTypeAssignableToFn IsTypeAssignableToFptr = nullptr;
 		IsTypeAssignableFromFn IsTypeAssignableFromFptr = nullptr;
