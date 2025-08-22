@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 
 namespace Coral.Managed.Interop;
 
+/// <summary>
+/// Un managed array enumerator. Useful for interop
+/// </summary>
 public sealed class NativeArrayEnumerator<T> : IEnumerator<T>
 {
 	private readonly T[] m_Elements;
@@ -36,7 +39,10 @@ public sealed class NativeArrayEnumerator<T> : IEnumerator<T>
 
 }
 
-[StructLayout(LayoutKind.Sequential, Size=32, Pack=8)]
+/// <summary>
+/// An unmanaged array of elements. Useful for interop
+/// </summary>
+[StructLayout(LayoutKind.Sequential, Size = 32, Pack = 8)]
 public struct NativeArray<T> : IDisposable, IEnumerable<T>
 {
 	private IntPtr m_NativeArray;
@@ -167,7 +173,10 @@ public static class ArrayStorage
 	}
 }
 
-[StructLayout(LayoutKind.Sequential, Size=16, Pack=8)]
+/// <summary>
+/// An unmanaged instance. Useful for interop
+/// </summary>
+[StructLayout(LayoutKind.Sequential, Size = 16, Pack = 8)]
 public struct NativeInstance<T> : IDisposable
 {
 	private IntPtr m_Handle;
@@ -223,7 +232,11 @@ public struct NativeInstance<T> : IDisposable
 
 // TODO(Emily): Transition to just using the automatic string marshalling for interop -- this type causes too many
 //				Problems.
-[StructLayout(LayoutKind.Explicit, Size=16)]
+
+/// <summary>
+/// An unmanaged string. Useful for interop
+/// </summary>
+[StructLayout(LayoutKind.Explicit, Size = 16)]
 public struct NativeString : IDisposable
 {
 	[FieldOffset(0)] internal IntPtr m_NativeString;
@@ -254,7 +267,10 @@ public struct NativeString : IDisposable
 	public static implicit operator string?(NativeString InString) => Marshal.PtrToStringAuto(InString.m_NativeString);
 }
 
-[StructLayout(LayoutKind.Explicit, Size=4)]
+/// <summary>
+/// A boolean value represented as a uint. Used for interop
+/// </summary>
+[StructLayout(LayoutKind.Explicit, Size = 4)]
 public struct Bool32
 {
 	[FieldOffset(0)] public uint Value;
@@ -263,7 +279,10 @@ public struct Bool32
 	public static implicit operator bool(Bool32 InBool32) => InBool32.Value > 0;
 }
 
-[StructLayout(LayoutKind.Explicit, Size=4)]
+/// <summary>
+/// A type represented as an int. Used for interop
+/// </summary>
+[StructLayout(LayoutKind.Explicit, Size = 4)]
 public struct ReflectionType
 {
 	[FieldOffset(0)] private readonly int m_TypeId;

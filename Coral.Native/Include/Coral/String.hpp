@@ -5,13 +5,27 @@
 namespace Coral {
 
 	// TODO(Emily): Could this benefit from retaining a var for size?
+
+	/// @brief Lorem Ipsun
 	class String
 	{
 	public:
+		/// @brief Creates a new string. Requires to be freed after use
+		/// @param InString The string
+		/// @return The created string object
 		static String New(const char* InString);
+
+		/// @brief Creates a new string. Requires to be freed after use
+		/// @param InString The string
+		/// @return The created string object
 		static String New(std::string_view InString);
+
+		/// @brief Frees a string
+		/// @param InString The string
 		static void Free(String& InString);
 
+		/// @brief Replaces the string
+		/// @param InString The string
 		void Assign(std::string_view InString);
 
 		operator std::string() const;
@@ -31,6 +45,7 @@ namespace Coral {
 	static_assert(offsetof(String, m_IsDisposed) == 8);
 	static_assert(sizeof(String) == 16);
 
+	/// @brief Lorem Ipsun
 	struct ScopedString
 	{
 		ScopedString(String InString)

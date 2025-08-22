@@ -7,11 +7,18 @@ namespace Coral {
 
 	class Type;
 
+	/// @brief Lorem Ipsun
 	class Attribute
 	{
 	public:
+		/// @brief Gets the type
+		/// @return The type
 		Type& GetType();
 
+		/// @brief Gets the field's value
+		/// @tparam TReturn The return type
+		/// @param InFieldName The name of the field
+		/// @return The value
 		template<typename TReturn>
 		TReturn GetFieldValue(std::string_view InFieldName)
 		{

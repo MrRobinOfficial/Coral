@@ -7,6 +7,9 @@ namespace Coral.Managed.Interop;
 
 using static ManagedHost;
 
+/// <summary>
+/// An unmanaged internal call. Useful for interop
+/// </summary>
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public readonly struct InternalCall
 {

@@ -9,6 +9,7 @@ namespace Coral {
 	class ManagedAssembly;
 	class Type;
 
+	/// @brief Lorem Ipsun
 	class alignas(8) ManagedObject
 	{
 	public:
@@ -20,6 +21,12 @@ namespace Coral {
 		ManagedObject& operator=(const ManagedObject& InOther);
 		ManagedObject& operator=(ManagedObject&& InOther) noexcept;
 
+		/// @brief Invokes a method
+		/// @tparam TReturn The return type
+		/// @tparam ...TArgs The types of the arguments
+		/// @param InMethodName The name of the method
+		/// @param ...InParameters The parameters
+		/// @return The return value
 		template<typename TReturn, typename... TArgs>
 		TReturn InvokeMethod(std::string_view InMethodName, TArgs&&... InParameters) const
 		{
@@ -42,6 +49,10 @@ namespace Coral {
 			return result;
 		}
 
+		/// @brief Invokes a method
+		/// @tparam ...TArgs The types of the arguments
+		/// @param InMethodName The name of the method
+		/// @param ...InParameters The parameters
 		template<typename... TArgs>
 		void InvokeMethod(std::string_view InMethodName, TArgs&&... InParameters) const
 		{
@@ -60,12 +71,20 @@ namespace Coral {
 			}
 		}
 
+		/// @brief Sets a field's value
+		/// @tparam TValue The type of the value
+		/// @param InFieldName The name of the field
+		/// @param InValue The value
 		template<typename TValue>
 		void SetFieldValue(std::string_view InFieldName, TValue InValue) const
 		{
 			SetFieldValueRaw(InFieldName, &InValue);
 		}
 
+		/// @brief Gets a field's value
+		/// @tparam TReturn The return type
+		/// @param InFieldName The name of the field
+		/// @return The value
 		template<typename TReturn>
 		TReturn GetFieldValue(std::string_view InFieldName) const
 		{
@@ -74,12 +93,20 @@ namespace Coral {
 			return result;
 		}
 
+		/// @brief Sets a property's value
+		/// @tparam TValue The type of the value
+		/// @param InPropertyName The name of the property
+		/// @param InValue The value
 		template<typename TValue>
 		void SetPropertyValue(std::string_view InPropertyName, TValue InValue) const
 		{
 			SetPropertyValueRaw(InPropertyName, &InValue);
 		}
 
+		/// @brief Gets a property's value
+		/// @tparam TReturn The return type
+		/// @param InPropertyName The name of the property
+		/// @return The value
 		template<typename TReturn>
 		TReturn GetPropertyValue(std::string_view InPropertyName) const
 		{
@@ -88,15 +115,35 @@ namespace Coral {
 			return result;
 		}
 
+		/// @brief Sets a field's value (raw)
+		/// @param InFieldName The name of the field
+		/// @param InValue The value
 		void SetFieldValueRaw(std::string_view InFieldName, void* InValue) const;
+
+		/// @brief Gets a field's value (raw)
+		/// @param InFieldName The name of the field
+		/// @param OutValue The value
 		void GetFieldValueRaw(std::string_view InFieldName, void* OutValue) const;
+
+		/// @brief Sets a property's value (raw)
+		/// @param InPropertyName The name of the property
+		/// @param InValue The value
 		void SetPropertyValueRaw(std::string_view InPropertyName, void* InValue) const;
+
+		/// @brief Gets a property's value (raw)
+		/// @param InPropertyName The name of the property
+		/// @param OutValue The value
 		void GetPropertyValueRaw(std::string_view InPropertyName, void* OutValue) const;
 
+		/// @brief Gets the type
+		/// @return A reference to the type
 		const Type& GetType();
 		
+		/// @brief Destroys the managed object
 		void Destroy();
 
+		/// @brief Checks if the managed object is valid
+		/// @return True if the managed object is valid
 		bool IsValid() const { return m_Handle != nullptr && m_Type != nullptr; }
 
 	private:

@@ -10,6 +10,7 @@
 
 namespace Coral {
 
+	/// @brief Lorem Ipsun
 	template <typename TElement, size_t PageSize = 256>
 	class StableVector
 	{

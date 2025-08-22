@@ -17,6 +17,9 @@ public enum AssemblyLoadStatus
 	Success, FileNotFound, FileLoadFailure, InvalidFilePath, InvalidAssembly, UnknownError
 }
 
+/// <summary>
+/// Manages the loading and unloading of assemblies
+/// </summary>
 public static class AssemblyLoader
 {
 	// NOTE(Emily): Visible to `TypeInterface.cs`.
