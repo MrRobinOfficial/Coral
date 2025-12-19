@@ -56,6 +56,7 @@ namespace Coral {
 	CoralInitStatus HostInstance::Initialize(HostSettings InSettings)
 	{
 		CORAL_VERIFY(!m_Initialized);
+		m_Initialized = true;
 
 		if (!LoadHostFXR())
 		{
