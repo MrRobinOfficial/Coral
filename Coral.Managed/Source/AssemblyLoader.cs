@@ -283,10 +283,25 @@ public static class AssemblyLoader
 
 			Assembly? assembly = null;
 
-			using (var file = MemoryMappedFile.CreateFromFile(InAssemblyFilePath!))
+			// 1. Manually open the handle with permissive sharing
+			using var fileHandle = File.OpenHandle(
+			    InAssemblyFilePath!, 
+			    FileMode.Open, 
+			    FileAccess.Read, 
+			    FileShare.ReadWrite);
+			
+			// 2. Use the overload that accepts the SafeFileHandle
+			using (var file = MemoryMappedFile.CreateFromFile(
+			    fileHandle, 
+			    null, 
+			    0, 
+			    MemoryMappedFileAccess.Read, 
+			    HandleInheritability.None, 
+			    leaveOpen: false))
 			{
-				using var stream = file.CreateViewStream();
-				assembly = alc.LoadFromStream(stream);
+			    // 3. Ensure the view is also Read-Only
+			    using var stream = file.CreateViewStream(0, 0, MemoryMappedFileAccess.Read);
+			    assembly = alc.LoadFromStream(stream);
 			}
 
 			LogMessage($"Loading assembly '{InAssemblyFilePath}'", MessageLevel.Info);
