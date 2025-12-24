@@ -283,7 +283,7 @@ public static class AssemblyLoader
 
 			Assembly? assembly = null;
 
-			using (var file = MemoryMappedFile.CreateFromFile(InAssemblyFilePath!, FileMode.Open, null, 0, MemoryMappedFileAccess.Read))
+			using (var file = MemoryMappedFile.CreateFromFile(InAssemblyFilePath!))
 			{
 				using var stream = file.CreateViewStream();
 				assembly = alc.LoadFromStream(stream);
