@@ -221,7 +221,7 @@ public static class AssemblyLoader
 			//
 			foreach (var handle in handles)
 			{
-				LogMessage($"Found still-registered handle '{(handle.Target is null? "null" : handle.Target)}' from assembly '{assemblyName}'", MessageLevel.Warning);
+				LogMessage($"Found still-registered handle '{(handle.Target is null ? "null" : handle.Target)}' from assembly '{assemblyName}'", MessageLevel.Warning);
 
 				if (!handle.IsAllocated || handle.Target == null)
 				{
@@ -283,7 +283,7 @@ public static class AssemblyLoader
 
 			Assembly? assembly = null;
 
-			using (var file = MemoryMappedFile.CreateFromFile(InAssemblyFilePath!))
+			using (var file = MemoryMappedFile.CreateFromFile(InAssemblyFilePath!, FileMode.Open, null, 0, MemoryMappedFileAccess.Read))
 			{
 				using var stream = file.CreateViewStream();
 				assembly = alc.LoadFromStream(stream);
